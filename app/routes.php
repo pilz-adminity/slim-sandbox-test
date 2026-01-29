@@ -26,7 +26,11 @@ return function (App $app) {
     });
 
     $app->get("/e/{env}", function (Request $request, Response $response, array $args) {
-        $response->getBody()->write(getenv($args["env"]));
+        var_dump($_ENV);
+        var_dump($args);
+        $e = getenv($args["env"]);
+        if (! $e) $e="";
+        $response->getBody()->write($e);
         return $response;
     });
 
