@@ -25,6 +25,12 @@ return function (App $app) {
         return $response;
     });
 
+    $app->get("/e/{env}", function (Request $request, Response $response, array $args) {
+        $response->getBody()->write(getenv($args["env"]));
+        return $response;
+    });
+
+
     $app->group('/users', function (Group $group) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
